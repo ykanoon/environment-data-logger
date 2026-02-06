@@ -44,7 +44,7 @@ datalogger.setColumnTitles(
 "light"
 )
 basic.clearScreen()
-loops.everyInterval(3600000, function () {
+loops.everyInterval(600000, function () {
     if (logging) {
         basic.showIcon(IconNames.Heart)
         datalogger.log(
