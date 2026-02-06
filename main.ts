@@ -12,6 +12,13 @@ input.onButtonPressed(Button.A, function () {
     logging = true
     basic.showIcon(IconNames.Yes)
 })
+input.onGesture(Gesture.Shake, function () {
+    if (logging) {
+        basic.showIcon(IconNames.Diamond)
+    } else {
+        basic.showIcon(IconNames.No)
+    }
+})
 input.onButtonPressed(Button.AB, function () {
     basic.showIcon(IconNames.Skull)
     datalogger.deleteLog()
