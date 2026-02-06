@@ -14,6 +14,7 @@ input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
 })
 input.onGesture(Gesture.Shake, function () {
+    logging = true
     if (logging) {
         basic.showIcon(IconNames.Diamond)
         basic.clearScreen()
@@ -45,11 +46,15 @@ datalogger.setColumnTitles(
 )
 datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
 basic.clearScreen()
-loops.everyInterval(60000, function () {
+loops.everyInterval(1000, function () {
+    logging = true
+    datalogger.log(
+    datalogger.createCV("temperature", input.temperature()),
+    datalogger.createCV("light", input.lightLevel()),
+    datalogger.createCV("temp2", pins.digitalReadPin(DigitalPin.P0)),
+    datalogger.createCV("date", DS3231.date())
+    )
     if (logging) {
-        datalogger.log(
-        datalogger.createCV("temperature", input.temperature()),
-        datalogger.createCV("light", input.lightLevel())
-        )
+    	
     }
 })
