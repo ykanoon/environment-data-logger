@@ -43,14 +43,13 @@ datalogger.setColumnTitles(
 "temperature",
 "light"
 )
+datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
 basic.clearScreen()
-loops.everyInterval(600000, function () {
+loops.everyInterval(60000, function () {
     if (logging) {
-        basic.showIcon(IconNames.Heart)
         datalogger.log(
         datalogger.createCV("temperature", input.temperature()),
         datalogger.createCV("light", input.lightLevel())
         )
-        basic.clearScreen()
     }
 })
