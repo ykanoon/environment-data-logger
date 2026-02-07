@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "datalogger": "*",
-        "pxt-DS3231": "github:keble6/pxt-ds3231#v1.0.2"
+        "pxt-DS3231": "github:keble6/pxt-ds3231#v1.0.2",
+        "stem": "github:tfabworks/pxt-stem#v2.3.4"
     },
     "files": [
         "main.blocks",
