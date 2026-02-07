@@ -35,7 +35,13 @@ input.onButtonPressed(Button.AB, function () {
     "temp_CPU",
     "light",
     "temp_OUT",
-    "moist_lv"
+    "moist_lv",
+    "year",
+    "month",
+    "date",
+    "hour",
+    "min",
+    "sec"
     )
     basic.clearScreen()
 })
@@ -51,7 +57,13 @@ datalogger.setColumnTitles(
 "temp_CPU",
 "light",
 "temp_OUT",
-"moist_lv"
+"moist_lv",
+"year",
+"month",
+"date",
+"hour",
+"min",
+"sec"
 )
 datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
 basic.clearScreen()
@@ -61,7 +73,13 @@ loops.everyInterval(60000, function () {
         datalogger.createCV("temp_CPU", input.temperature()),
         datalogger.createCV("light", input.lightLevel()),
         datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
-        datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1))
+        datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1)),
+        datalogger.createCV("year", DS3231.year()),
+        datalogger.createCV("month", DS3231.month()),
+        datalogger.createCV("date", DS3231.date()),
+        datalogger.createCV("hour", DS3231.hour()),
+        datalogger.createCV("min", DS3231.minute()),
+        datalogger.createCV("sec", DS3231.second())
         )
     }
 })
