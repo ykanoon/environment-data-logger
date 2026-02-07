@@ -15,7 +15,13 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onGesture(Gesture.Shake, function () {
     if (logging) {
-        basic.showIcon(IconNames.Diamond)
+        basic.showLeds(`
+            . # # # .
+            # . . . #
+            # . . . #
+            # . . . #
+            . # # # .
+            `)
         basic.clearScreen()
     } else {
         basic.showIcon(IconNames.No)
@@ -49,12 +55,13 @@ datalogger.setColumnTitles(
 )
 datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
 basic.clearScreen()
-loops.everyInterval(1000, function () {
-    datalogger.log(
-    datalogger.createCV("temp_CPU", input.temperature()),
-    datalogger.createCV("light", input.lightLevel()),
-    datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
-    datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1))
-    )
-    logging = true
+loops.everyInterval(60000, function () {
+    if (logging) {
+        datalogger.log(
+        datalogger.createCV("temp_CPU", input.temperature()),
+        datalogger.createCV("light", input.lightLevel()),
+        datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
+        datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1))
+        )
+    }
 })
