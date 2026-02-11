@@ -67,7 +67,5 @@ loops.everyInterval(900000, function () {
         datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1)),
         datalogger.createCV("light", input.lightLevel())
         ])
-        basic.showIcon(IconNames.Heart)
-        basic.clearScreen()
     }
 })
