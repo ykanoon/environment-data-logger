@@ -31,18 +31,13 @@ input.onGesture(Gesture.Shake, function () {
 input.onButtonPressed(Button.AB, function () {
     basic.showIcon(IconNames.Skull)
     datalogger.deleteLog()
-    datalogger.setColumnTitles(
+    datalogger.setColumns([
+    "datetime",
     "temp_CPU",
-    "light",
     "temp_OUT",
     "moist_lv",
-    "year",
-    "month",
-    "date",
-    "hour",
-    "min",
-    "sec"
-    )
+    "light"
+    ])
     basic.clearScreen()
 })
 input.onButtonPressed(Button.B, function () {
@@ -53,33 +48,26 @@ input.onButtonPressed(Button.B, function () {
 let logging = false
 logging = true
 basic.showIcon(IconNames.Yes)
-datalogger.setColumnTitles(
+timeanddate.setDate(DS3231.month(), DS3231.date(), DS3231.year())
+timeanddate.set24HourTime(DS3231.hour(), DS3231.minute(), DS3231.second())
+datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
+datalogger.setColumns([
+"datetime",
 "temp_CPU",
-"light",
 "temp_OUT",
 "moist_lv",
-"year",
-"month",
-"date",
-"hour",
-"min",
-"sec"
-)
-datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
-basic.clearScreen()
-loops.everyInterval(60000, function () {
+"light"
+])
+loops.everyInterval(900000, function () {
     if (logging) {
-        datalogger.log(
+        datalogger.logData([
+        datalogger.createCV("datetime", timeanddate.dateTime()),
         datalogger.createCV("temp_CPU", input.temperature()),
-        datalogger.createCV("light", input.lightLevel()),
         datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
         datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1)),
-        datalogger.createCV("year", DS3231.year()),
-        datalogger.createCV("month", DS3231.month()),
-        datalogger.createCV("date", DS3231.date()),
-        datalogger.createCV("hour", DS3231.hour()),
-        datalogger.createCV("min", DS3231.minute()),
-        datalogger.createCV("sec", DS3231.second())
-        )
+        datalogger.createCV("light", input.lightLevel())
+        ])
+        basic.showIcon(IconNames.Heart)
+        basic.clearScreen()
     }
 })
