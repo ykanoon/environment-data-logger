@@ -58,6 +58,7 @@ datalogger.setColumns([
 "moist_lv",
 "light"
 ])
+basic.clearScreen()
 loops.everyInterval(900000, function () {
     if (logging) {
         datalogger.logData([
