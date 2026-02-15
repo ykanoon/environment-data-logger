@@ -61,7 +61,7 @@ datalogger.setColumns([
 "moist_lv2"
 ])
 basic.clearScreen()
-loops.everyInterval(1000, function () {
+loops.everyInterval(60000, function () {
     if (logging) {
         datalogger.logData([
         datalogger.createCV("datetime", timeanddate.dateTime()),
