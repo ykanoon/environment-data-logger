@@ -37,7 +37,8 @@ input.onButtonPressed(Button.AB, function () {
     "temp_OUT",
     "moist_lv",
     "light",
-    "moist_lv2"
+    "moist_lv2",
+    "moist_lv3"
     ])
     basic.clearScreen()
 })
@@ -58,7 +59,8 @@ datalogger.setColumns([
 "temp_OUT",
 "moist_lv",
 "light",
-"moist_lv2"
+"moist_lv2",
+"moist_lv3"
 ])
 basic.clearScreen()
 loops.everyInterval(60000, function () {
@@ -69,7 +71,8 @@ loops.everyInterval(60000, function () {
         datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
         datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1)),
         datalogger.createCV("light", input.lightLevel()),
-        datalogger.createCV("moist_lv2", pins.analogReadPin(AnalogReadWritePin.P2))
+        datalogger.createCV("moist_lv2", pins.analogReadPin(AnalogReadWritePin.P2)),
+        datalogger.createCV("moist_lv3", 0)
         ])
     }
 })
