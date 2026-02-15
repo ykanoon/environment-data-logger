@@ -36,7 +36,8 @@ input.onButtonPressed(Button.AB, function () {
     "temp_CPU",
     "temp_OUT",
     "moist_lv",
-    "light"
+    "light",
+    "moist_lv2"
     ])
     basic.clearScreen()
 })
@@ -56,17 +57,19 @@ datalogger.setColumns([
 "temp_CPU",
 "temp_OUT",
 "moist_lv",
-"light"
+"light",
+"moist_lv2"
 ])
 basic.clearScreen()
-loops.everyInterval(900000, function () {
+loops.everyInterval(1000, function () {
     if (logging) {
         datalogger.logData([
         datalogger.createCV("datetime", timeanddate.dateTime()),
         datalogger.createCV("temp_CPU", input.temperature()),
         datalogger.createCV("temp_OUT", stem.TP2_getTemperature()),
         datalogger.createCV("moist_lv", pins.analogReadPin(AnalogReadWritePin.P1)),
-        datalogger.createCV("light", input.lightLevel())
+        datalogger.createCV("light", input.lightLevel()),
+        datalogger.createCV("moist_lv2", pins.analogReadPin(AnalogReadWritePin.P2))
         ])
     }
 })
